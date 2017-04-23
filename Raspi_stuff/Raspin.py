@@ -3,13 +3,35 @@
 #  2017-04-16
 #  Class to represent a single Item connection on the rasp pi a single GPIO 
 #
+#  some good info but for older Rasp Pi
+#  http://raspi.tv/2013/rpi-gpio-basics-5-setting-up-and-using-outputs-with-rpi-gpio
+#
 """
-Turn a item on via the Raspberry Pi GPIO 
+Model:
+RaspIOBus - class to represent the entire set of GPIO PINS
+Raspin    - class to represent a single pin on the GPIO BUS
 
+-- Things --
+-    Some pins on the BUS are GROUND, 5v, 3.3v, not all are IO
+-    IO pins can be set for Output, or Input
+
+-    IO Output pins can be:
+-      - 
+-    IO Input pins can be:
+-      - 
+
+== == GPIO methods ==
++ GPIO.setmodel     Pin Numbering scheme to use [ BCM or BOARD ]
++ GPIO.setup        Pin Number is assigned an attribute
++ GPIO.output       An Output Pin's power is set on/off
++ GPIO.cleanup()    resets all GPIO ports; only works after GPIO.setup
++ 
 """
+
+
+import time
 
 import RPi.GPIO as GPIO
-import time
 
 
 class Raspin():
@@ -57,7 +79,6 @@ def main():
     print("now let17.switch() it should go OFF")
     led17.switch()
 
-		
+
 if __name__ == "__main__":
     main()
-
