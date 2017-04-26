@@ -6,17 +6,17 @@
 """
 Test the Raspin Class
 """
-
-import time
 import unittest
-
+import time
 from Raspi_stuff import Raspin as Rpin
 
+class TestRapian(unittest.TestCase):
 
-class Test_Raspin(unittest):
+
     def test_rapian(self):
+        print("Running the Tests")
         Rpin.Raspin.led17 = Rpin.Raspin(17, True)
-
+    
         Rpin.Raspin.led17.setup(True)
         print("led17 setup and now: led17.on()")
         Rpin.Raspin.led17.on()
@@ -33,3 +33,5 @@ class Test_Raspin(unittest):
         time.sleep(2)
         print("now let17.switch() it should go OFF")
         Rpin.Raspin.led17.switch()
+if __name__ == '__main__':
+    unittest.main()
