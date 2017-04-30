@@ -59,26 +59,97 @@ class Raspin():
         self.state = not self.state
         GPIO.output(self.ioid, self.state)
 	
-def main():
-    led17 = Raspin(17,True)
+def light_setup(number):
+    led = Raspin(number, True)
+    led.setup(True)
+    led.on()
+    return led
 
-    led17.setup(True)
-    print("led17 setup and now: led17.on()")
-    led17.on()
-    print("time.sleep 2")
+def switch_after(sec, light):
+    time.sleep(sec)
+    light.switch()
+
+def daddoo_pattern():
+    print "Daddoos pattern..."
+    red = light_setup(27)
+    blue = light_setup(17)
+    blue.off()
+
+    for i in range(0,5):
+        switch_after(1, blue)
+        switch_after(1, red)
+
+    time.sleep(1)
+    red.off()
+    blue.off()
+
+    GPIO.cleanup()
+
+   
+def papa_pattern():
+    print "pappas pattern..."
+    led17 = light_setup(17)
+    jude = light_setup(27)
+    
     time.sleep(2)
-    print("led17.off()")
+
     led17.off()
-    print("time.sleep 2")
+
     time.sleep(2)
-    print("now let17.switch() it should go ON")
-    led17.switch()
-    print(led17.state)
-    print(led17.ioid)
+
+    jude.off()
+    led17.on()
+
     time.sleep(2)
-    print("now let17.switch() it should go OFF")
+
+    jude.on()
+    led17.on()
+
+    time.sleep(1)
+
+    jude.switch()
     led17.switch()
 
+    GPIO.cleanup()
+
+
+
+def judes_lights():
+    print "judes pattern..."
+    red = light_setup(27)
+    blue = light_setup(17)
+
+    time.sleep(2)
+    red.off()
+    time.sleep(2)
+    blue.off()
+    time.sleep(2)
+    red.on()
+    blue.on()
+    time.sleep(2)
+    blue.off()
+    time.sleep(2)
+    red.off()
+    blue.on()
+    time.sleep(2)
+    red.switch()
+    time.sleep(2)
+
+    GPIO.cleanup()
+
+
+
+
+
+
+
+
+
+
+def main():
+    judes_lights()
+    papa_pattern()
+    daddoo_pattern()
 
 if __name__ == "__main__":
     main()
