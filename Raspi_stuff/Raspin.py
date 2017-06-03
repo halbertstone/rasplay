@@ -60,19 +60,22 @@ class Raspin():
         GPIO.output(self.ioid, self.state)
 	
 def light_setup(number):
-    led = Raspin(number, True)
-    led.setup(True)
-    led.on()
-    return led
+		""" Used to define the usage of a GPIO PIN
+		"""
+		led = Raspin(number, True)
+		led.setup(True)
+		led.on()
+		return led
 
 def switch_after(sec, light):
+    
     time.sleep(sec)
     light.switch()
 
 def daddoo_pattern():
     print "Daddoos pattern..."
-    red = light_setup(27)
-    blue = light_setup(17)
+    red = light_setup(27)  
+    blue = light_setup(17)                                                                                                                                                                                                                                           
     blue.off()
 
     for i in range(0,5):
@@ -146,10 +149,11 @@ def judes_lights():
 
 
 
+
 def main():
     judes_lights()
-    papa_pattern()
-    daddoo_pattern()
+    #papa_pattern()
+    #daddoo_pattern()
 
 if __name__ == "__main__":
     main()
